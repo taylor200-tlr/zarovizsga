@@ -24,4 +24,13 @@ public class Employee {
     public LocalDate getWorkDay() {
         return workDay;
     }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "name='" + name + '\'' +
+                ", workedHours=" + workedHours +
+                ", workDay=" + workDay +
+                '}';
+    }
 }

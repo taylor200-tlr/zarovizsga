@@ -11,8 +11,7 @@ import java.util.List;
 public class WorkHours {
     private List<Employee> employees = new ArrayList<>();
 
-    public String minWork(String file){
-        getPathFromFile(file);
+    public String minWork(String file) {
         Path path = Path.of(file);
         readLine(path);
         String result = getMinWorkedEmployee().getName() + ": " + getMinWorkedEmployee().getWorkDay();
@@ -22,9 +21,10 @@ public class WorkHours {
     private Employee getMinWorkedEmployee() {
         int minValue = Integer.MAX_VALUE;
         Employee result = null;
-        for (Employee employee:employees){
-            if(employee.getWorkedHours()< minValue){
+        for (Employee employee : employees) {
+            if (employee.getWorkedHours() < minValue) {
                 result = employee;
+                minValue = employee.getWorkedHours();
             }
         }
         return result;
@@ -38,10 +38,10 @@ public class WorkHours {
         // és azzal lenne meghívva a readline
     }
 
-    private void readLine(Path path){
+    private void readLine(Path path) {
         String line;
-        try(BufferedReader reader = Files.newBufferedReader(path)){
-            while ((line = reader.readLine()) != null ){
+        try (BufferedReader reader = Files.newBufferedReader(path)) {
+            while ((line = reader.readLine()) != null) {
                 createEmployeesFromLine(line);
             }
         } catch (IOException ioe) {
