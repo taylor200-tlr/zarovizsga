@@ -30,14 +30,6 @@ public class WorkHours {
         return result;
     }
 
-    private void getPathFromFile(String file) {
-        // Itt kellene megcsinálnom a Path.of paraméterezését a file eléréséhez
-        // pl file splittelése "/" regex mentén
-        // ha szükséges ilyen
-        // de akkor nem void lenne, hanem path-t adna vissza
-        // és azzal lenne meghívva a readline
-    }
-
     private void readLine(Path path) {
         String line;
         try (BufferedReader reader = Files.newBufferedReader(path)) {

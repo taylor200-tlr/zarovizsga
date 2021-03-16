@@ -18,7 +18,7 @@ public class DogTypes {
         try (
                 Connection conn = dataSource.getConnection();
                 Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery("select dog_type from employees where dog_country = country order by dog_name")
+                ResultSet rs = stmt.executeQuery("select dog_name from dogs_table where dog_country = country order by dog_name")
         ) {
             List<String> names = new ArrayList<>();
             while (rs.next()) {
@@ -28,7 +28,7 @@ public class DogTypes {
             return names;
         }
         catch (SQLException se) {
-            throw new IllegalStateException("Cannot select employees", se);
+            throw new IllegalStateException("Cannot select table", se);
         }
     }
 }
