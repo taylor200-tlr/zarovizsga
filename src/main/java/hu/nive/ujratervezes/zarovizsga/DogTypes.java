@@ -17,15 +17,20 @@ public class DogTypes {
 
         try (
                 Connection conn = dataSource.getConnection();
-                Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery("select name from dogs_types where country = country order by name")
+                PreparedStatement stmt = conn.prepareStatement("select name from dogs_types where country = ? order by name");
         ) {
-            List<String> names = new ArrayList<>();
-            while (rs.next()) {
-                String name = rs.getString("name");
-                names.add(name);
-            }
-            return names;
+                stmt.setString(1, country);
+                List<String> dogNames = new ArrayList<>();
+//                try(
+                        ResultSet resultSet = stmt.executeQuery();
+//                        ){
+                    while (resultSet.next()){
+                        dogNames.add(resultSet.getString("name").toLowerCase());
+                    }
+
+ //               }
+            return dogNames;
+
         }
         catch (SQLException se) {
             throw new IllegalStateException("Cannot select table", se);
