@@ -18,11 +18,11 @@ public class DogTypes {
         try (
                 Connection conn = dataSource.getConnection();
                 Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery("select dog_name from dogs_table where dog_country = country order by dog_name")
+                ResultSet rs = stmt.executeQuery("select name from dogs_types where country = country order by name")
         ) {
             List<String> names = new ArrayList<>();
             while (rs.next()) {
-                String name = rs.getString("dog_name");
+                String name = rs.getString("name");
                 names.add(name);
             }
             return names;
